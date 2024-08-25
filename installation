@@ -2,7 +2,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////How To Start////////////////////////////////////////////
 // 1. Save (Ctrl+S) this file and change the "installation.txt" file name to "installation.php" //
-//    or copy its content to an "installation.php" file,                     //
+//    or copy its content to an "installation.php" file,                                        //
 // 2. Place the file on the server,                                                             //
 // 3. Install the app by pressing button,                                                       //
 // 4. Create Admin account,                                                                     //
