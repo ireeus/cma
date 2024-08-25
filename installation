@@ -1,0 +1,127 @@
+<?php
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////How To Start////////////////////////////////////////////
+// 1. Save (Ctrl+S) this file and change the "installation.txt" file name to "installation.php" //
+//    or copy its content to an "installation.php" file on the your server,                     //
+// 2. Place the file on the server,                                                             //
+// 3. Install the app by pressing button,                                                       //
+// 4. Create Admin account,                                                                     //
+// 5. Go to Settings/App config and change the default account access level,                    //
+// 6. Go to updates and check for updates / install updates,                                    //
+// 7. Create "New record",                                                                      //
+// 8. Enjoy.                                                                                    //
+//                                                                                              //
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install CMA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .install-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .install-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .install-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .install-container button:hover {
+            background-color: #45a049;
+        }
+        .install-container p {
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="install-container">
+        <h1>Install Collaboration Management Assistant</h1>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            function createFolders($folders) {
+                foreach ($folders as $folder) {
+                    if (!file_exists($folder)) {
+                        mkdir($folder, 0777, true);
+                    }
+                }
+            }
+
+            function downloadFile($url, $saveTo) {
+                file_put_contents($saveTo, fopen($url, 'r'));
+                return file_exists($saveTo);
+            }
+
+            function unzipFile($file, $destination) {
+                $zip = new ZipArchive;
+                if ($zip->open($file) === TRUE) {
+                    $zip->extractTo($destination);
+                    $zip->close();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            // Create folders
+            $folders = ['login_attempts', 'images', 'sessions', 'pdfs', 'tests', 'users', 'temp', 'online', 'log', 'backup', 'recovery'];
+            createFolders($folders);
+
+            // Encrypted URL (base64 encoded)
+            $Url = 'aHR0cHM6Ly9jbG91ZGFwcHMuemFwdG8ub3JnL2NtYS1kZXZlbG9wbWVudC9iYWNrdXAv';
+            $zipUrl = base64_decode($Url) . 'install.zip';
+            $zipFile = 'install.zip';
+
+            if (downloadFile($zipUrl, $zipFile)) {
+                if (unzipFile($zipFile, __DIR__)) {
+                    unlink($zipFile);
+                    if (file_exists('installation.php')) {
+                        unlink('installation.php');
+                    }
+                    header('Location: register.php');
+                    exit;
+                } else {
+                    echo '<p>Failed to unzip the file.</p>';
+                }
+            } else {
+                echo '<p>Failed to download the zip file.</p>';
+            }
+        } else {
+        ?>
+            <form method="post">
+                <button type="submit">Install the CMA</button>
+            </form>
+        <?php
+        }
+        ?>
+    </div>
+</body>
+</html>
