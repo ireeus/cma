@@ -55,4 +55,4 @@
 <h2>Support</h2>
 
 <p>For any questions or support, please open an issue in this repository, and we'll get back to you as soon as possible.</p>
-<p><b>Installation file:</b> <a href="https://cloudapps.zapto.org/cma-update/install" target="blank">install.php</a></p>
+<p><b>Installation file:</b> <a href="https://cloudapps.zapto.org/cma-update/installation" target="blank">installation.php</a></p>
