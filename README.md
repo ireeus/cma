@@ -8,6 +8,9 @@
     <li><strong>Task Management:</strong> Easily create, assign, and track tasks across multiple projects using simple text files.</li>
     <li><strong>Team Collaboration:</strong> Facilitate smooth communication within teams.</li>
     <li><strong>Project Tracking:</strong> Monitor the progress of ongoing projects in real-time.</li>
+    <li><strong>Project Records:</strong> Create detailed project records to trace the progress of manufacturing or development processes.</li>
+    <li><strong>File Uploads:</strong> Upload pictures and PDF files related to a project, allowing for visual documentation and easy access to important documents.</li>
+    <li><strong>File Descriptions:</strong> Provide detailed descriptions for uploaded files to ensure clear understanding of their relevance to the project.</li>
     <li><strong>No Database Required:</strong> All data is stored in text files, making it easy to set up and maintain.</li>
     <li><strong>User-Friendly Interface:</strong> Intuitive design for seamless user experience.</li>
 </ul>
